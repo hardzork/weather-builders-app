@@ -1,15 +1,56 @@
 import React, { ReactNode, useEffect, useState } from "react";
-import { View, Text, Alert } from "react-native";
+import { Alert } from "react-native";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { WeatherContext, WeatherInfoProps } from "./WeatherContext";
+import { api } from "../services/api";
 
 export type WeatherContextProviderProps = {
   children: ReactNode;
 };
 
-const wait = (timeout: any) => {
-  return new Promise((resolve) => setTimeout(resolve, timeout));
+export type WeatherApiResponse = {
+  coord: {
+    lon: number;
+    lat: number;
+  };
+  weather: [
+    {
+      id: number;
+      main: string;
+      description: string;
+      icon: string;
+    }
+  ];
+  base: string;
+  main: {
+    temp: number;
+    feels_like: number;
+    temp_min: number;
+    temp_max: number;
+    pressure: number;
+    humidity: number;
+  };
+  visibility: number;
+  wind: {
+    speed: number;
+    deg: number;
+  };
+  clouds: {
+    all: number;
+  };
+  dt: number;
+  sys: {
+    type: number;
+    id: number;
+    country: string;
+    sunrise: number;
+    sunset: number;
+  };
+  timezone: number;
+  id: number;
+  name: string;
+  cod: number;
 };
 
 export function WeatherContextProvider({
@@ -30,16 +71,26 @@ export function WeatherContextProvider({
   async function getWeatherInfo() {
     try {
       setLoading(true);
-      // await wait(2000);
+      const response = await api.get<WeatherApiResponse>("weather", {
+        params: {
+          appid: "753b3c35c8d66c119cc0693cb0878377",
+          lat: -1.455833,
+          lon: -48.503887,
+          units: "metric",
+          lang: "pt_br",
+        },
+      });
+      console.log("Chamou API");
+      const { name, sys, dt, weather, main } = response.data;
       setWeather({
-        location: "Belém, BR",
-        date: format(new Date(), "E dd 'de' LLL 'de' yyyy", {
+        location: `${name}, ${sys.country}`,
+        date: format(new Date(), "E',' dd 'de' LLL 'de' yyyy", {
           locale: ptBR,
         }),
         time: format(new Date(), "HH:mm"),
-        icon: "https://openweathermap.org/img/wn/10d@2x.png",
-        temp: `${23}°C`,
-        temp_description: "nublado",
+        icon: `https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`,
+        temp: `${Math.round(main.temp)}°C`,
+        temp_description: weather[0].description,
       });
     } catch (error) {
       Alert.alert(

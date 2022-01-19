@@ -13,9 +13,6 @@ export function Home(props: HomeProps) {
     <Background>
       <Container>
         <WeatherPrincipalCard />
-        <View>
-          <Text>aloooo</Text>
-        </View>
       </Container>
     </Background>
   );

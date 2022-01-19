@@ -1,7 +1,8 @@
 import styled from "styled-components/native";
 import { Dimensions } from "react-native";
+import { Feather } from "@expo/vector-icons";
 
-const { width, height } = Dimensions.get("screen");
+const { height } = Dimensions.get("screen");
 
 export const Scroll = styled.ScrollView.attrs((props) => ({
   contentContainerStyle: {
@@ -19,10 +20,8 @@ export const Container = styled.View`
   background: rgba(255, 255, 255, 0.3);
   border-radius: 25px;
 `;
-
 export const Header = styled.View`
   height: 40%;
-  background-color: rgba(255, 255, 255, 0.1);
   flex-direction: row;
 `;
 export const LocationInfoContainer = styled.View`
@@ -32,33 +31,83 @@ export const LocationInfoContainer = styled.View`
   padding-top: 10px;
 `;
 export const Location = styled.Text`
-  flex: 1;
+  font-size: 20px;
+  font-weight: bold;
 `;
 export const TimeInfo = styled.View`
-  flex: 1;
-  flex-direction: row;
   justify-content: space-between;
+  align-items: flex-start;
+`;
+export const DateContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 5px;
+`;
+
+export const DateIcon = styled(Feather).attrs((props) => ({
+  name: "calendar",
+}))`
+  color: #333333;
+  margin-right: 4px;
+`;
+
+export const Date = styled.Text`
+  font-size: 12px;
+  color: #333333;
+  font-style: italic;
+`;
+export const TimeContainer = styled.View`
+  flex-direction: row;
   align-items: center;
 `;
-export const Date = styled.Text``;
-export const Time = styled.Text``;
+
+export const TimeIcon = styled(Feather).attrs((props) => ({
+  name: "clock",
+}))`
+  color: #333333;
+  margin-right: 4px;
+`;
+
+export const Time = styled.Text`
+  font-size: 12px;
+  color: #333333;
+  font-style: italic;
+`;
 export const IconContainer = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
 `;
+export const Icon = styled.Image`
+  width: 150px;
+  height: 150px;
+`;
 
 export const TemperatureContainer = styled.View`
-  background-color: rgba(255, 255, 255, 0.5);
   height: 50%;
   justify-content: center;
   align-items: center;
 `;
-export const Temperature = styled.Text``;
-export const Description = styled.Text``;
+export const Temperature = styled.Text`
+  font-size: 52px;
+  font-weight: bold;
+`;
+export const Description = styled.Text`
+  font-size: 16px;
+  color: #333333;
+  font-style: italic;
+`;
 export const RefreshInfoContainer = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
+  background-color: #d7e2e9;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
 `;
-export const RefreshInfo = styled.Text``;
+export const RefreshInfo = styled.Text`
+  font-style: italic;
+  font-weight: 400;
+  font-size: 12px;
+  color: #3e3e3e;
+`;

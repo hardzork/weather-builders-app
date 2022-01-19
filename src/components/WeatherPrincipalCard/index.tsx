@@ -1,5 +1,4 @@
-import React, { useCallback } from "react";
-import { Image, RefreshControl } from "react-native";
+import { RefreshControl } from "react-native";
 import { useWeather } from "../../hooks/useWeather";
 import {
   Scroll,
@@ -8,7 +7,11 @@ import {
   LocationInfoContainer,
   Location,
   TimeInfo,
+  DateContainer,
+  DateIcon,
   Date,
+  TimeContainer,
+  TimeIcon,
   Time,
   IconContainer,
   TemperatureContainer,
@@ -16,19 +19,16 @@ import {
   Description,
   RefreshInfoContainer,
   RefreshInfo,
+  Icon,
 } from "./styles";
 
 export function WeatherPrincipalCard() {
   const { loading, weather, getWeatherInfo } = useWeather();
 
-  const onRefresh = useCallback(async () => {
-    await getWeatherInfo();
-  }, []);
-
   return (
     <Scroll
       refreshControl={
-        <RefreshControl refreshing={loading} onRefresh={onRefresh} />
+        <RefreshControl refreshing={loading} onRefresh={getWeatherInfo} />
       }
     >
       <Container>
@@ -36,15 +36,18 @@ export function WeatherPrincipalCard() {
           <LocationInfoContainer>
             <Location>{weather.location}</Location>
             <TimeInfo>
-              <Date>{weather.date}</Date>
-              <Time>{weather.time}</Time>
+              <DateContainer>
+                <DateIcon />
+                <Date>{weather.date}</Date>
+              </DateContainer>
+              <TimeContainer>
+                <TimeIcon />
+                <Time>{weather.time}</Time>
+              </TimeContainer>
             </TimeInfo>
           </LocationInfoContainer>
           <IconContainer>
-            <Image
-              source={{ uri: weather.icon }}
-              style={{ width: 100, height: 100 }}
-            />
+            <Icon source={{ uri: weather.icon }} />
           </IconContainer>
         </Header>
         <TemperatureContainer>
@@ -52,7 +55,7 @@ export function WeatherPrincipalCard() {
           <Description>{weather.temp_description}</Description>
         </TemperatureContainer>
         <RefreshInfoContainer>
-          <RefreshInfo>Puxe para atualizar</RefreshInfo>
+          <RefreshInfo>PUXE PARA ATUALIZAR</RefreshInfo>
         </RefreshInfoContainer>
       </Container>
     </Scroll>

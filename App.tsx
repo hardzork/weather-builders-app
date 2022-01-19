@@ -1,6 +1,4 @@
-import { Text } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { Background } from "./src/components/Background";
 import { Routes } from "./src/routes";
 import { WeatherContextProvider } from "./src/hooks/useWeather";
 
