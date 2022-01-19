@@ -8,6 +8,7 @@ export type LocationInfoProps = {
 };
 
 type LocationContextProps = {
+  completed: boolean;
   loading: boolean;
   location: LocationInfoProps;
   granted: boolean;

@@ -13,6 +13,7 @@ export function LocationContextProvider({
   children,
 }: LocationContextProviderProps) {
   const [completed, setCompleted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [granted, setGranted] = useState(false);
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
@@ -29,6 +30,7 @@ export function LocationContextProvider({
 
   async function getLocation() {
     try {
+      setLoading(true);
       const { status } = await Location.requestForegroundPermissionsAsync();
 
       if (status !== "granted") {
@@ -85,12 +87,13 @@ export function LocationContextProvider({
         `Ocorreu um erro ao buscar sua localização. \r\nDescrição: ${error}`
       );
     } finally {
+      setLoading(false);
     }
   }
 
   return (
     <LocationContext.Provider
-      value={{ completed, location, granted, date, time, getLocation }}
+      value={{ completed, loading, location, granted, date, time, getLocation }}
     >
       {children}
     </LocationContext.Provider>

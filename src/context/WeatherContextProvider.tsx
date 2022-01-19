@@ -60,11 +60,7 @@ export function WeatherContextProvider({
   const [weather, setWeather] = useState<WeatherInfoProps>(
     {} as WeatherInfoProps
   );
-  const {
-    location,
-    granted: locationPermissionGranted,
-    completed: locationCompleted,
-  } = useLocation();
+  const { location, completed: locationCompleted } = useLocation();
   useEffect(() => {
     async function loadWeatherInfo() {
       await getWeatherInfo();

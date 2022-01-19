@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { RefreshControl, View } from "react-native";
 import { useLocation } from "../../hooks/useLocation";
 import { useWeather } from "../../hooks/useWeather";
@@ -24,23 +25,31 @@ import {
 } from "./styles";
 
 export function WeatherPrincipalCard() {
-  const { location, granted, date, time, completed } = useLocation();
-  const { loading, weather, getWeatherInfo } = useWeather();
+  const { location, date, time, completed, getLocation } = useLocation();
+  const { weather, getWeatherInfo } = useWeather();
+  const [refreshing, setRefreshing] = useState(false);
 
   if (!completed) {
     return <View></View>;
   }
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await getLocation();
+    await getWeatherInfo();
+    setRefreshing(false);
+  };
   return (
     <Scroll
       refreshControl={
-        <RefreshControl refreshing={loading} onRefresh={getWeatherInfo} />
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }
     >
       <Container>
         <Header>
           <LocationInfoContainer>
             <Location>
-              {location.address.city}, {location.address.isoCountryCode}
+              {location.address.street}, {location.address.streetNumber}
             </Location>
             <TimeInfo>
               <DateContainer>
@@ -58,6 +67,10 @@ export function WeatherPrincipalCard() {
           </IconContainer>
         </Header>
         <TemperatureContainer>
+          <Location>
+            {location.address.city || location.address.subregion},{" "}
+            {location.address.isoCountryCode}
+          </Location>
           <Temperature>{weather.temp}</Temperature>
           <Description>{weather.temp_description}</Description>
         </TemperatureContainer>
