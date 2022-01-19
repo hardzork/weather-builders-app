@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 
 import { Background } from "../../components/Background";
 import { WeatherPrincipalCard } from "../../components/WeatherPrincipalCard";
@@ -13,6 +13,9 @@ export function Home(props: HomeProps) {
     <Background>
       <Container>
         <WeatherPrincipalCard />
+        <View>
+          <Text>aloooo</Text>
+        </View>
       </Container>
     </Background>
   );

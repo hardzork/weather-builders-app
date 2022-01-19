@@ -1,6 +1,8 @@
-import * as React from "react";
-import { Image } from "react-native";
+import React, { useCallback } from "react";
+import { Image, RefreshControl } from "react-native";
+import { useWeather } from "../../hooks/useWeather";
 import {
+  Scroll,
   Container,
   Header,
   LocationInfoContainer,
@@ -9,28 +11,50 @@ import {
   Date,
   Time,
   IconContainer,
+  TemperatureContainer,
+  Temperature,
+  Description,
+  RefreshInfoContainer,
+  RefreshInfo,
 } from "./styles";
 
-export interface WeatherPrincipalCardProps {}
+export function WeatherPrincipalCard() {
+  const { loading, weather, getWeatherInfo } = useWeather();
 
-export function WeatherPrincipalCard(props: WeatherPrincipalCardProps) {
+  const onRefresh = useCallback(async () => {
+    await getWeatherInfo();
+  }, []);
+
   return (
-    <Container>
-      <Header>
-        <LocationInfoContainer>
-          <Location>Belém, BR</Location>
-          <TimeInfo>
-            <Date>Qua. 19 de jan.</Date>
-            <Time>00:08</Time>
-          </TimeInfo>
-        </LocationInfoContainer>
-        <IconContainer>
-          <Image
-            source={{ uri: "https://openweathermap.org/img/wn/10d@2x.png" }}
-            style={{ width: 100, height: 100 }}
-          />
-        </IconContainer>
-      </Header>
-    </Container>
+    <Scroll
+      refreshControl={
+        <RefreshControl refreshing={loading} onRefresh={onRefresh} />
+      }
+    >
+      <Container>
+        <Header>
+          <LocationInfoContainer>
+            <Location>{weather.location}</Location>
+            <TimeInfo>
+              <Date>{weather.date}</Date>
+              <Time>{weather.time}</Time>
+            </TimeInfo>
+          </LocationInfoContainer>
+          <IconContainer>
+            <Image
+              source={{ uri: weather.icon }}
+              style={{ width: 100, height: 100 }}
+            />
+          </IconContainer>
+        </Header>
+        <TemperatureContainer>
+          <Temperature>{weather.temp}</Temperature>
+          <Description>{weather.temp_description}</Description>
+        </TemperatureContainer>
+        <RefreshInfoContainer>
+          <RefreshInfo>Puxe para atualizar</RefreshInfo>
+        </RefreshInfoContainer>
+      </Container>
+    </Scroll>
   );
 }
