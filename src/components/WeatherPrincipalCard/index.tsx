@@ -1,4 +1,5 @@
-import { RefreshControl } from "react-native";
+import { RefreshControl, View } from "react-native";
+import { useLocation } from "../../hooks/useLocation";
 import { useWeather } from "../../hooks/useWeather";
 import {
   Scroll,
@@ -23,8 +24,12 @@ import {
 } from "./styles";
 
 export function WeatherPrincipalCard() {
+  const { location, granted, date, time, completed } = useLocation();
   const { loading, weather, getWeatherInfo } = useWeather();
 
+  if (!completed) {
+    return <View></View>;
+  }
   return (
     <Scroll
       refreshControl={
@@ -34,15 +39,17 @@ export function WeatherPrincipalCard() {
       <Container>
         <Header>
           <LocationInfoContainer>
-            <Location>{weather.location}</Location>
+            <Location>
+              {location.address.city}, {location.address.isoCountryCode}
+            </Location>
             <TimeInfo>
               <DateContainer>
                 <DateIcon />
-                <Date>{weather.date}</Date>
+                <Date>{date}</Date>
               </DateContainer>
               <TimeContainer>
                 <TimeIcon />
-                <Time>{weather.time}</Time>
+                <Time>{time}</Time>
               </TimeContainer>
             </TimeInfo>
           </LocationInfoContainer>

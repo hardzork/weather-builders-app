@@ -1,9 +1,6 @@
 import { createContext } from "react";
 
 export type WeatherInfoProps = {
-  location: string;
-  date: string;
-  time: string;
   icon: string;
   temp: string;
   temp_description: string;

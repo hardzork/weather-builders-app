@@ -1,9 +1,9 @@
 import React, { ReactNode, useEffect, useState } from "react";
 import { Alert } from "react-native";
-import { format } from "date-fns";
-import { ptBR } from "date-fns/locale";
+
 import { WeatherContext, WeatherInfoProps } from "./WeatherContext";
 import { api } from "../services/api";
+import { useLocation } from "../hooks/useLocation";
 
 export type WeatherContextProviderProps = {
   children: ReactNode;
@@ -60,38 +60,38 @@ export function WeatherContextProvider({
   const [weather, setWeather] = useState<WeatherInfoProps>(
     {} as WeatherInfoProps
   );
-
+  const {
+    location,
+    granted: locationPermissionGranted,
+    completed: locationCompleted,
+  } = useLocation();
   useEffect(() => {
     async function loadWeatherInfo() {
       await getWeatherInfo();
     }
     loadWeatherInfo();
-  }, []);
+  }, [locationCompleted]);
 
   async function getWeatherInfo() {
     try {
       setLoading(true);
-      const response = await api.get<WeatherApiResponse>("weather", {
-        params: {
-          appid: "753b3c35c8d66c119cc0693cb0878377",
-          lat: -1.455833,
-          lon: -48.503887,
-          units: "metric",
-          lang: "pt_br",
-        },
-      });
-      console.log("Chamou API");
-      const { name, sys, dt, weather, main } = response.data;
-      setWeather({
-        location: `${name}, ${sys.country}`,
-        date: format(new Date(), "E',' dd 'de' LLL 'de' yyyy", {
-          locale: ptBR,
-        }),
-        time: format(new Date(), "HH:mm"),
-        icon: `https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`,
-        temp: `${Math.round(main.temp)}°C`,
-        temp_description: weather[0].description,
-      });
+      if (locationCompleted) {
+        const response = await api.get<WeatherApiResponse>("weather", {
+          params: {
+            appid: "753b3c35c8d66c119cc0693cb0878377",
+            lat: location.lat,
+            lon: location.lon,
+            units: "metric",
+            lang: "pt_br",
+          },
+        });
+        const { weather, main } = response.data;
+        setWeather({
+          icon: `https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`,
+          temp: `${Math.round(main.temp)}°C`,
+          temp_description: weather[0].description,
+        });
+      }
     } catch (error) {
       Alert.alert(
         "Oops! Aconteceu algo...",
