@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "weather-builders-app",
+    "name": "Weather Builders App",
     "slug": "weather-builders-app",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -13,11 +13,9 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false
     },
     "android": {
       "adaptiveIcon": {
