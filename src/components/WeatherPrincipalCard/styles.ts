@@ -92,10 +92,17 @@ export const Temperature = styled.Text`
   font-size: 52px;
   font-weight: bold;
 `;
+
+export const FeelsLike = styled.Text`
+  font-size: 12px;
+  color: #333333;
+  font-style: italic;
+`;
 export const Description = styled.Text`
   font-size: 16px;
   color: #333333;
   font-style: italic;
+  text-transform: capitalize;
 `;
 export const RefreshInfoContainer = styled.View`
   flex: 1;

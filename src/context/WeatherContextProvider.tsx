@@ -4,6 +4,7 @@ import { Alert } from "react-native";
 import { WeatherContext, WeatherInfoProps } from "./WeatherContext";
 import { api } from "../services/api";
 import { useLocation } from "../hooks/useLocation";
+import { getDirectionByMeteorologicalDegrees } from "../utils/degreesRotation";
 
 export type WeatherContextProviderProps = {
   children: ReactNode;
@@ -81,11 +82,18 @@ export function WeatherContextProvider({
             lang: "pt_br",
           },
         });
-        const { weather, main } = response.data;
+        const { weather, main, wind } = response.data;
         setWeather({
           icon: `https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`,
           temp: `${Math.round(main.temp)}°C`,
           temp_description: weather[0].description,
+          feels_like: `${Math.round(main.feels_like)}°C`,
+          temp_min: `${Math.round(main.temp_min)}°C`,
+          temp_max: `${Math.round(main.temp_max)}°C`,
+          pressure: `${main.pressure} hPa`,
+          humidity: `${main.humidity} %`,
+          wind_speed: `${Math.round(wind.speed * 3.6)} km/h`,
+          wind_direction: getDirectionByMeteorologicalDegrees(wind.deg),
         });
       }
     } catch (error) {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { RefreshControl, View } from "react-native";
+import { RefreshControl, View, Text } from "react-native";
 import { useLocation } from "../../hooks/useLocation";
 import { useWeather } from "../../hooks/useWeather";
 import {
@@ -18,6 +18,7 @@ import {
   IconContainer,
   TemperatureContainer,
   Temperature,
+  FeelsLike,
   Description,
   RefreshInfoContainer,
   RefreshInfo,
@@ -28,11 +29,9 @@ export function WeatherPrincipalCard() {
   const { location, date, time, completed, getLocation } = useLocation();
   const { weather, getWeatherInfo } = useWeather();
   const [refreshing, setRefreshing] = useState(false);
-
   if (!completed) {
     return <View></View>;
   }
-
   const onRefresh = async () => {
     setRefreshing(true);
     await getLocation();
@@ -72,6 +71,7 @@ export function WeatherPrincipalCard() {
             {location.address.isoCountryCode}
           </Location>
           <Temperature>{weather.temp}</Temperature>
+          <FeelsLike>sensação de {weather.feels_like}</FeelsLike>
           <Description>{weather.temp_description}</Description>
         </TemperatureContainer>
         <RefreshInfoContainer>

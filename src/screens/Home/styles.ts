@@ -9,4 +9,6 @@ export const Container = styled.View`
 export const Footer = styled.View`
   flex-direction: row;
   justify-content: space-between;
+  padding-left: 3%;
+  padding-right: 3%;
 `;
