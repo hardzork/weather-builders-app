@@ -5,6 +5,7 @@ import { WeatherContext, WeatherInfoProps } from "./WeatherContext";
 import { api } from "../services/api";
 import { useLocation } from "../hooks/useLocation";
 import { getDirectionByMeteorologicalDegrees } from "../utils/degreesRotation";
+import { getZonedDateNow, getZonedTimeNow } from "../utils/zonedTime";
 
 export type WeatherContextProviderProps = {
   children: ReactNode;
@@ -54,6 +55,11 @@ export type WeatherApiResponse = {
   cod: number;
 };
 
+export type PromiseRejectionProps = {
+  message: string;
+  status: number;
+};
+
 export function WeatherContextProvider({
   children,
 }: WeatherContextProviderProps) {
@@ -94,6 +100,12 @@ export function WeatherContextProvider({
           humidity: `${main.humidity} %`,
           wind_speed: `${Math.round(wind.speed * 3.6)} km/h`,
           wind_direction: getDirectionByMeteorologicalDegrees(wind.deg),
+          city_name: "",
+          country: "",
+          date: "",
+          time: "",
+          lat: 0,
+          lon: 0,
         });
       }
     } catch (error) {
@@ -106,8 +118,61 @@ export function WeatherContextProvider({
     }
   }
 
+  async function getWeatherInfoByCityName(
+    city: string
+  ): Promise<WeatherInfoProps | null> {
+    try {
+      const response = await api.get<WeatherApiResponse>("weather", {
+        params: {
+          appid: "753b3c35c8d66c119cc0693cb0878377",
+          q: city,
+          units: "metric",
+          lang: "pt_br",
+        },
+      });
+      const { weather, main, wind, name, sys, timezone } = response.data;
+
+      return {
+        icon: `https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`,
+        temp: `${Math.round(main.temp)}°C`,
+        temp_description: weather[0].description,
+        feels_like: `${Math.round(main.feels_like)}°C`,
+        temp_min: `${Math.round(main.temp_min)}°C`,
+        temp_max: `${Math.round(main.temp_max)}°C`,
+        pressure: `${main.pressure} hPa`,
+        humidity: `${main.humidity} %`,
+        wind_speed: `${Math.round(wind.speed * 3.6)} km/h`,
+        wind_direction: getDirectionByMeteorologicalDegrees(wind.deg),
+        city_name: name,
+        country: sys.country,
+        date: getZonedDateNow(timezone),
+        time: getZonedTimeNow(timezone),
+        lat: 0,
+        lon: 0,
+      } as WeatherInfoProps;
+    } catch (error) {
+      // @ts-ignore
+      if (error.response?.status === 404) {
+        Alert.alert(
+          "Cidade não encontrada!",
+          `Não conseguimos encontrar a cidade "${city.trim()}".`
+        );
+        return null;
+      }
+      Alert.alert(
+        "Oops! Aconteceu algo...",
+        `Ocorreu um erro ao buscar as informações do tempo na sua região. \r\nDescrição: ${error}`
+      );
+      return null;
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
-    <WeatherContext.Provider value={{ loading, getWeatherInfo, weather }}>
+    <WeatherContext.Provider
+      value={{ loading, getWeatherInfo, getWeatherInfoByCityName, weather }}
+    >
       {children}
     </WeatherContext.Provider>
   );

@@ -1,7 +1,6 @@
-import * as React from "react";
 import { View, Text } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useWeather } from "../../hooks/useWeather";
+import { useLocation } from "../../hooks/useLocation";
 import {
   Container,
   Icon,
@@ -15,6 +14,10 @@ export interface WeatherHumidityInfoCardProps {}
 
 export function WeatherHumidityInfoCard(props: WeatherHumidityInfoCardProps) {
   const { weather } = useWeather();
+  const { completed } = useLocation();
+  if (!completed) {
+    return <View></View>;
+  }
   return (
     <Container>
       <IconContainer>

@@ -1,3 +1,5 @@
+import { View } from "react-native";
+import { useLocation } from "../../hooks/useLocation";
 import { useWeather } from "../../hooks/useWeather";
 
 import {
@@ -16,6 +18,10 @@ export interface WeatherMaxMinInfoCardProps {}
 
 export function WeatherMaxMinInfoCard(props: WeatherMaxMinInfoCardProps) {
   const { weather } = useWeather();
+  const { completed } = useLocation();
+  if (!completed) {
+    return <View></View>;
+  }
   return (
     <Container>
       <IconContainer>

@@ -1,3 +1,5 @@
+import { View } from "react-native";
+import { useLocation } from "../../hooks/useLocation";
 import { useWeather } from "../../hooks/useWeather";
 import {
   Container,
@@ -13,6 +15,10 @@ export interface WeatherWindInfoCardProps {}
 
 export function WeatherWindInfoCard(props: WeatherWindInfoCardProps) {
   const { weather } = useWeather();
+  const { completed } = useLocation();
+  if (!completed) {
+    return <View></View>;
+  }
   return (
     <Container>
       <IconContainer>
