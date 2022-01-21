@@ -34,7 +34,7 @@ export function FavoriteButton({ city, ...rest }: FavoriteButtonProps) {
       }
     };
     verifyExistence();
-  }, [favorites]);
+  }, [favorites, city]);
 
   return (
     <FavoriteTouchable
