@@ -61,6 +61,7 @@ Na aba de Favoritos, você tem uma lista de todas as cidades que você marcou co
 - [React Navigation](https://reactnavigation.org/)
 - [Testing library](https://testing-library.com/)
 - [Jest](https://jestjs.io/)
+- [Open Weather](https://openweathermap.org/api)
 
 ## Como executar
 
@@ -79,7 +80,32 @@ Siga as intruções abaixo utilizando sua linha de comando.
 $ git clone https://github.com/hardzork/weather-builders-app.git
 ```
 
-<i>Após o download concluído, </i>
+### Variaveis de ambiente
+
+Antes de executar o projeto, você precisa adicionar as variaveis de ambiente. Elas estão descritas no arquivo:
+
+```bash
+
+ .env.example
+
+```
+
+Adicione as sugestões abaixo:
+
+```bash
+API_URL_PREFIX = https://api.openweathermap.org/data/2.5/
+IMG_URL_PREFIX = https://openweathermap.org/img/wn
+OPEN_WEATHER_API_KEY = 753b3c35c8d66c119cc0693cb0878377
+OPEN_WEATHER_API_UNITS = metric
+OPEN_WEATHER_API_LANG = pt_br
+ASYNC_STORAGE_KEY = @WEATHER_BUILDERS_APP_FAVORITE_CITIES
+```
+
+O App utiliza a API do Open Weather para obter as informações de clima. Se preferir crie uma nova chave em [API do Open Weather](https://openweathermap.org/api).
+
+Após adicionar as sugestões acima ou as suas próprias (Somente para OPEN_WEATHER_API_KEY e ASYNC_STORAGE_KEY), altere o nome do arquivo de ".env.example" para ".env".
+
+<i>Após a configuração finalizada</i>
 
 ```bash
 # Vá para o repositório do app
