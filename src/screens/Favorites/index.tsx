@@ -1,23 +1,13 @@
-import * as React from "react";
-import { View, Text } from "react-native";
-import { Background } from "../../components/Background";
-import { WeatherCityCard } from "../../components/WeatherCityCard";
-import { useFavorites } from "../../hooks/useFavorites";
+import { Background, WeatherCityCard } from "../../components";
+import { useFavorites } from "../../hooks";
 import { Container, List } from "./styles";
 
-export interface FavoritesProps {}
-
-export function Favorites(props: FavoritesProps) {
+export function Favorites() {
   const { favorites } = useFavorites();
-  // console.log(favorites);
   return (
     <Background>
       <Container>
-        <List
-        // data={favorites}
-        // keyExtractor={(_, index) => String(index)}
-        // renderItem={({ item }) => <WeatherCityCard city={item as string} />}
-        >
+        <List>
           {favorites.map((city, index) => (
             <WeatherCityCard key={String(index)} city={city as string} />
           ))}

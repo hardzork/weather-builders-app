@@ -1,8 +1,11 @@
 import { StatusBar } from "expo-status-bar";
+
 import { Routes } from "./src/routes";
-import { WeatherContextProvider } from "./src/hooks/useWeather";
-import { LocationContextProvider } from "./src/hooks/useLocation";
-import { FavoritesContextProvider } from "./src/hooks/useFavorites";
+import {
+  LocationContextProvider,
+  WeatherContextProvider,
+  FavoritesContextProvider,
+} from "./src/hooks";
 
 export default function App() {
   return (

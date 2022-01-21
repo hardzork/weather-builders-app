@@ -4,13 +4,11 @@ import { getStatusBarHeight } from "react-native-iphone-x-helper";
 export const Container = styled.View`
   flex: 1;
   margin-top: ${getStatusBarHeight() + 24}px;
-  /* align-items: center; */
 `;
 
 export const ClearSearchButton = styled.TouchableOpacity`
   bottom: 0px;
   margin: 5%;
-  /* width: 100%; */
   position: absolute;
   width: 90%;
   height: 56px;

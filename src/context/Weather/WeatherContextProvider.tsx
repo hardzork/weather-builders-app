@@ -55,11 +55,6 @@ export type WeatherApiResponse = {
   cod: number;
 };
 
-export type PromiseRejectionProps = {
-  message: string;
-  status: number;
-};
-
 export function WeatherContextProvider({
   children,
 }: WeatherContextProviderProps) {

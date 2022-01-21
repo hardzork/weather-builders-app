@@ -81,7 +81,6 @@ export const SideContainer = styled.View`
 `;
 export const FavoriteContainer = styled.View`
   align-items: flex-end;
-  /* background-color: #000; */
 `;
 
 export const IconContainer = styled.View``;

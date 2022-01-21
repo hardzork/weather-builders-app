@@ -1,15 +1,8 @@
-import React, { useEffect, useState } from "react";
-import {
-  TouchableOpacity,
-  TouchableOpacityProps,
-  Text,
-  ColorValue,
-  ActivityIndicator,
-} from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { useEffect, useState } from "react";
+import { TouchableOpacityProps, ActivityIndicator } from "react-native";
+import { useFavorites } from "../../hooks";
 
 import { FavoriteTouchable, Star } from "./styles";
-import { useFavorites } from "../../hooks/useFavorites";
 
 type FavoriteButtonProps = TouchableOpacityProps & {
   city: string;

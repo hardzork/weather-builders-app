@@ -1,6 +1,5 @@
-import { View, Text } from "react-native";
-import { useWeather } from "../../hooks/useWeather";
-import { useLocation } from "../../hooks/useLocation";
+import { View } from "react-native";
+import { useLocation, useWeather } from "../../hooks";
 import {
   Container,
   Icon,
@@ -10,9 +9,7 @@ import {
   Humidity,
 } from "./styles";
 
-export interface WeatherHumidityInfoCardProps {}
-
-export function WeatherHumidityInfoCard(props: WeatherHumidityInfoCardProps) {
+export function WeatherHumidityInfoCard() {
   const { weather } = useWeather();
   const { completed } = useLocation();
   if (!completed) {

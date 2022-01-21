@@ -2,11 +2,11 @@ import { SetStateAction, Dispatch } from "react";
 
 import { Container, SearchInput, IconTouchableContainer, Icon } from "./styles";
 
-export interface SearchBoxProps {
+type SearchBoxProps = {
   search: string;
   setSearch: Dispatch<SetStateAction<string>>;
   handleSearch: () => void;
-}
+};
 
 export function SearchBox({ search, setSearch, handleSearch }: SearchBoxProps) {
   return (

@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { RefreshControl, View, Text } from "react-native";
-import { useLocation } from "../../hooks/useLocation";
-import { useWeather } from "../../hooks/useWeather";
+import { RefreshControl, View } from "react-native";
+import { useLocation, useWeather } from "../../hooks";
 import {
   Scroll,
   Container,

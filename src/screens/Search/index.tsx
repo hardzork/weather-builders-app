@@ -1,19 +1,18 @@
-import { Background } from "../../components/Background";
 import { useState } from "react";
+import { Background, SearchBox, WeatherCityCard } from "../../components";
+
 import {
   Container,
   ClearSearchButton,
   ClearSearchButtonLabel,
   Content,
 } from "./styles";
-import { SearchBox } from "../../components/SearchBox";
-import { WeatherCityCard } from "../../components/WeatherCityCard";
 
 export function Search() {
   const [search, setSearch] = useState("");
   const [city, setCity] = useState("");
 
-  async function handleSearch() {
+  function handleSearch() {
     setCity(search);
   }
 

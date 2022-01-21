@@ -4,7 +4,6 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 export const Container = styled.View`
   width: 22%;
   height: 120px;
-  /* justify-content: space-around; */
   align-items: center;
   border-radius: 8px;
   background-color: #fff;

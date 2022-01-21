@@ -14,9 +14,8 @@ import {
   MinLabel,
   Min,
 } from "./styles";
-export interface WeatherMaxMinInfoCardProps {}
 
-export function WeatherMaxMinInfoCard(props: WeatherMaxMinInfoCardProps) {
+export function WeatherMaxMinInfoCard() {
   const { weather } = useWeather();
   const { completed } = useLocation();
   if (!completed) {

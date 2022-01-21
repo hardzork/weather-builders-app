@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { View } from "react-native";
 import { WeatherInfoProps } from "../../context/Weather/WeatherContext";
-import { useWeather } from "../../hooks/useWeather";
-
+import { useWeather } from "../../hooks";
 import { FavoriteButton } from "../FavoriteButton";
 
 import {

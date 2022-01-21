@@ -50,20 +50,14 @@ export function FavoritesContextProvider({
         return;
       }
       const cities: string[] = JSON.parse(favoriteCities);
-      // console.log(cities);
       const newFavoriteCities = cities.filter(
         (favoriteCity) => favoriteCity !== city
       );
-      // console.log(newFavoriteCities);
       await AsyncStorage.removeItem("@WEATHER_BUILDERS_APP_FAVORITE_CITIES");
       await AsyncStorage.setItem(
         "@WEATHER_BUILDERS_APP_FAVORITE_CITIES",
         JSON.stringify(newFavoriteCities)
       );
-      // const test = await AsyncStorage.getItem(
-      //   "@WEATHER_BUILDERS_APP_FAVORITE_CITIES"
-      // );
-      // console.log(test);
       setFavorites(newFavoriteCities);
     } catch (error) {
       Alert.alert(
