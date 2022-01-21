@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Keyboard } from "react-native";
 import { Background, SearchBox, WeatherCityCard } from "../../components";
 
 import {
@@ -14,6 +15,7 @@ export function Search() {
 
   function handleSearch() {
     setCity(search);
+    Keyboard.dismiss();
   }
 
   function handleCleanSearch() {

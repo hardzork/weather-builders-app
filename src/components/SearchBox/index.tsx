@@ -1,4 +1,5 @@
 import { SetStateAction, Dispatch } from "react";
+import { Keyboard } from "react-native";
 
 import { Container, SearchInput, IconTouchableContainer, Icon } from "./styles";
 
@@ -15,6 +16,8 @@ export function SearchBox({ search, setSearch, handleSearch }: SearchBoxProps) {
         value={search}
         onChangeText={(value: string) => setSearch(value)}
         placeholder="Ex: Porto Alegre"
+        returnKeyType="send"
+        onSubmitEditing={handleSearch}
       />
       <IconTouchableContainer onPress={handleSearch}>
         <Icon />

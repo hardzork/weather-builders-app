@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 import { WeatherInfoProps } from "../../context/Weather/WeatherContext";
 import { useWeather } from "../../hooks";
@@ -23,7 +23,7 @@ import {
   IconContainer,
 } from "./styles";
 
-type WeatherCityCardProps = {
+export type WeatherCityCardProps = {
   city: string;
 };
 
