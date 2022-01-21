@@ -1,4 +1,7 @@
+import { useEffect, useState } from "react";
 import { View } from "react-native";
+import { WeatherInfoProps } from "../../context/Weather/WeatherContext";
+import { useWeather } from "../../hooks/useWeather";
 
 import { FavoriteButton } from "../FavoriteButton";
 
@@ -22,54 +25,57 @@ import {
 } from "./styles";
 
 type WeatherCityCardProps = {
-  cityName: string | undefined;
-  country: string | undefined;
-  temperature: string;
-  temperatureDescription: string;
-  icon: string;
-  localDate: string | undefined;
-  localTime: string | undefined;
+  city: string;
 };
 
-export function WeatherCityCard({
-  cityName,
-  country,
-  temperature,
-  temperatureDescription,
-  icon,
-  localDate,
-  localTime,
-}: WeatherCityCardProps) {
-  if (!temperature) {
+export function WeatherCityCard({ city }: WeatherCityCardProps) {
+  const [weather, setWeather] = useState<WeatherInfoProps>(
+    {} as WeatherInfoProps
+  );
+  const { getWeatherInfoByCityName } = useWeather();
+
+  useEffect(() => {
+    const loadWeatherInfo = async () => {
+      if (city.length > 0) {
+        const response = await getWeatherInfoByCityName(city);
+        if (response) setWeather(response);
+      } else {
+        setWeather({} as WeatherInfoProps);
+      }
+    };
+    loadWeatherInfo();
+  }, [city]);
+
+  if (!weather.temp) {
     return <View></View>;
   }
   return (
     <Container>
       <InfoContainer>
         <City>
-          {cityName}, {country}
+          {weather.city_name}, {weather.country}
         </City>
         <DateInfoContainer>
           <DateIcon />
-          <DateInfo>{localDate}</DateInfo>
+          <DateInfo>{weather.date}</DateInfo>
         </DateInfoContainer>
         <TimeInfoContainer>
           <TimeIcon />
-          <Time>{localTime}</Time>
+          <Time>{weather.time}</Time>
         </TimeInfoContainer>
         <TemperatureInfoContainer>
-          <Temperature>{temperature}</Temperature>
+          <Temperature>{weather.temp}</Temperature>
           <TemperatureDescription>
-            {temperatureDescription}
+            {weather.temp_description}
           </TemperatureDescription>
         </TemperatureInfoContainer>
       </InfoContainer>
       <SideContainer>
         <FavoriteContainer>
-          <FavoriteButton city={cityName as string} />
+          <FavoriteButton city={weather.city_name} />
         </FavoriteContainer>
         <IconContainer>
-          <Icon source={{ uri: icon }} />
+          <Icon source={{ uri: weather.icon }} />
         </IconContainer>
       </SideContainer>
     </Container>
