@@ -91,19 +91,6 @@ export function LocationContextProvider({
     }
   }
 
-  // async function getLocationByLatLong(
-  //   location: Omit<LocationInfoProps, "address">
-  // ): Promise<LocationInfoProps> {
-
-  //   const { status } = await Location.requestForegroundPermissionsAsync();
-
-  //     if (status !== "granted") {
-  //       Alert.alert("Não consigo!", "Desculpe, mas você não me deu permissão")
-  //       return;
-  //     }
-  //   return {} as LocationInfoProps;
-  // }
-
   return (
     <LocationContext.Provider
       value={{
@@ -114,7 +101,6 @@ export function LocationContextProvider({
         date,
         time,
         getLocation,
-        // getLocationByLatLong,
       }}
     >
       {children}

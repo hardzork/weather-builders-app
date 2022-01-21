@@ -1,7 +1,6 @@
-import { addSeconds, format, parseISO } from "date-fns";
-import { useMemo } from "react";
-import { View, Text } from "react-native";
-import { ptBR } from "date-fns/locale";
+import { View } from "react-native";
+
+import { FavoriteButton } from "../FavoriteButton";
 
 import {
   Container,
@@ -17,6 +16,9 @@ import {
   Temperature,
   TemperatureDescription,
   Icon,
+  SideContainer,
+  FavoriteContainer,
+  IconContainer,
 } from "./styles";
 
 type WeatherCityCardProps = {
@@ -62,9 +64,14 @@ export function WeatherCityCard({
           </TemperatureDescription>
         </TemperatureInfoContainer>
       </InfoContainer>
-      <View>
-        <Icon source={{ uri: icon }} />
-      </View>
+      <SideContainer>
+        <FavoriteContainer>
+          <FavoriteButton city={cityName as string} />
+        </FavoriteContainer>
+        <IconContainer>
+          <Icon source={{ uri: icon }} />
+        </IconContainer>
+      </SideContainer>
     </Container>
   );
 }

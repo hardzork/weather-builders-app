@@ -2,6 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { Routes } from "./src/routes";
 import { WeatherContextProvider } from "./src/hooks/useWeather";
 import { LocationContextProvider } from "./src/hooks/useLocation";
+import { FavoritesContextProvider } from "./src/hooks/useFavorites";
 
 export default function App() {
   return (
@@ -9,7 +10,9 @@ export default function App() {
       <StatusBar style="light" backgroundColor="transparent" />
       <LocationContextProvider>
         <WeatherContextProvider>
-          <Routes />
+          <FavoritesContextProvider>
+            <Routes />
+          </FavoritesContextProvider>
         </WeatherContextProvider>
       </LocationContextProvider>
     </>

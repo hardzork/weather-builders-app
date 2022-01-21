@@ -4,7 +4,7 @@ import { Container, ClearSearchButton, ClearSearchButtonLabel } from "./styles";
 import { useWeather } from "../../hooks/useWeather";
 import { SearchBox } from "../../components/SearchBox";
 import { WeatherCityCard } from "../../components/WeatherCityCard";
-import { WeatherInfoProps } from "../../context/WeatherContext";
+import { WeatherInfoProps } from "../../context/Weather/WeatherContext";
 
 export function Search() {
   const [search, setSearch] = useState("");
@@ -14,6 +14,7 @@ export function Search() {
   const { getWeatherInfoByCityName } = useWeather();
 
   async function handleSearch() {
+    setResultCity({} as WeatherInfoProps);
     const response = await getWeatherInfoByCityName(search);
     if (response) {
       setResultCity(response);
@@ -21,8 +22,8 @@ export function Search() {
   }
 
   function handleCleanSearch() {
-    setResultCity({} as WeatherInfoProps);
     setSearch("");
+    setResultCity({} as WeatherInfoProps);
   }
   return (
     <Background>

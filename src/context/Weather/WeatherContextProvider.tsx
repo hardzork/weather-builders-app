@@ -2,10 +2,10 @@ import React, { ReactNode, useEffect, useState } from "react";
 import { Alert } from "react-native";
 
 import { WeatherContext, WeatherInfoProps } from "./WeatherContext";
-import { api } from "../services/api";
-import { useLocation } from "../hooks/useLocation";
-import { getDirectionByMeteorologicalDegrees } from "../utils/degreesRotation";
-import { getZonedDateNow, getZonedTimeNow } from "../utils/zonedTime";
+import { api } from "../../services/api";
+import { useLocation } from "../../hooks/useLocation";
+import { getDirectionByMeteorologicalDegrees } from "../../utils/degreesRotation";
+import { getZonedDateNow, getZonedTimeNow } from "../../utils/zonedTime";
 
 export type WeatherContextProviderProps = {
   children: ReactNode;
@@ -131,7 +131,6 @@ export function WeatherContextProvider({
         },
       });
       const { weather, main, wind, name, sys, timezone } = response.data;
-
       return {
         icon: `https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`,
         temp: `${Math.round(main.temp)}°C`,

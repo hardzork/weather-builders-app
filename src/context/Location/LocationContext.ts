@@ -15,9 +15,6 @@ type LocationContextProps = {
   date: string;
   time: string;
   getLocation: () => Promise<void>;
-  // getLocationByLatLong: (
-  //   location: Omit<LocationInfoProps, "address">
-  // ) => Promise<LocationInfoProps>;
 };
 
 export const LocationContext = createContext({} as LocationContextProps);

@@ -74,3 +74,13 @@ export const Icon = styled.Image`
   width: 150px;
   height: 150px;
 `;
+
+export const SideContainer = styled.View`
+  flex: 1;
+`;
+export const FavoriteContainer = styled.View`
+  align-items: flex-end;
+  /* background-color: #000; */
+`;
+
+export const IconContainer = styled.View``;
