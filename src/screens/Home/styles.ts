@@ -11,4 +11,5 @@ export const Footer = styled.View`
   justify-content: space-between;
   padding-left: 3%;
   padding-right: 3%;
+  margin-bottom: 20px;
 `;

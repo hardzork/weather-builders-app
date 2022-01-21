@@ -8,7 +8,8 @@ export const Container = styled.View`
   margin-right: 5%;
   padding: 20px;
   flex-direction: row;
-  margin-bottom: -40px;
+  margin-bottom: 20px;
+  height: 200px;
 `;
 
 export const InfoContainer = styled.View`

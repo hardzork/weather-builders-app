@@ -6,9 +6,10 @@ export const Container = styled.View`
   margin-top: ${getStatusBarHeight() + 24}px;
 `;
 
-export const List = styled.FlatList.attrs({
+export const List = styled.ScrollView.attrs({
   showsVerticalScrollIndicator: false,
-})`
-  /* margin-top: 20px; */
-  /* flex: 1; */
-`;
+
+  contentContainerStyle: {
+    paddingVertical: 20,
+  },
+})``;

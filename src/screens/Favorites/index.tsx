@@ -14,10 +14,14 @@ export function Favorites(props: FavoritesProps) {
     <Background>
       <Container>
         <List
-          data={favorites}
-          keyExtractor={(_, index) => String(index)}
-          renderItem={({ item }) => <WeatherCityCard city={item as string} />}
-        />
+        // data={favorites}
+        // keyExtractor={(_, index) => String(index)}
+        // renderItem={({ item }) => <WeatherCityCard city={item as string} />}
+        >
+          {favorites.map((city, index) => (
+            <WeatherCityCard key={String(index)} city={city as string} />
+          ))}
+        </List>
       </Container>
     </Background>
   );

@@ -16,11 +16,11 @@ export function Routes() {
           tabBarIcon: ({ focused, color, size }) => {
             let iconName: keyof typeof Ionicons.glyphMap =
               "alert-circle-outline";
-            if (route.name === "Home") {
+            if (route.name === "Seu Local") {
               iconName = focused ? "home" : "home-outline";
-            } else if (route.name === "Search") {
+            } else if (route.name === "Buscar") {
               iconName = focused ? "search" : "search-outline";
-            } else if (route.name === "Favorites") {
+            } else if (route.name === "Favoritos") {
               iconName = focused ? "md-star" : "md-star-outline";
             }
             return <Ionicons name={iconName} size={size} color={color} />;
@@ -29,9 +29,9 @@ export function Routes() {
           tabBarInactiveTintColor: "gray",
         })}
       >
-        <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Search" component={Search} />
-        <Tab.Screen name="Favorites" component={Favorites} />
+        <Tab.Screen name="Seu Local" component={Home} />
+        <Tab.Screen name="Buscar" component={Search} />
+        <Tab.Screen name="Favoritos" component={Favorites} />
       </Tab.Navigator>
     </NavigationContainer>
   );

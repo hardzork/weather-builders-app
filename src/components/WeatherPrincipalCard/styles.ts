@@ -7,7 +7,7 @@ const { height } = Dimensions.get("screen");
 export const Scroll = styled.ScrollView.attrs((props) => ({
   contentContainerStyle: {
     marginVertical: 20,
-    height: height / 3,
+    height: 300,
   },
 }))`
   max-height: ${height / 1.5}px;
