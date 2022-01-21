@@ -76,16 +76,16 @@ export function WeatherContextProvider({
       if (locationCompleted) {
         const response = await api.get<WeatherApiResponse>("weather", {
           params: {
-            appid: "753b3c35c8d66c119cc0693cb0878377",
+            appid: process.env.OPEN_WEATHER_API_KEY,
             lat: location.lat,
             lon: location.lon,
-            units: "metric",
-            lang: "pt_br",
+            units: process.env.OPEN_WEATHER_API_UNITS,
+            lang: process.env.OPEN_WEATHER_API_LANG,
           },
         });
         const { weather, main, wind } = response.data;
         setWeather({
-          icon: `https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`,
+          icon: `${process.env.IMG_URL_PREFIX}/${weather[0].icon}@2x.png`,
           temp: `${Math.round(main.temp)}°C`,
           temp_description: weather[0].description,
           feels_like: `${Math.round(main.feels_like)}°C`,
@@ -119,15 +119,15 @@ export function WeatherContextProvider({
     try {
       const response = await api.get<WeatherApiResponse>("weather", {
         params: {
-          appid: "753b3c35c8d66c119cc0693cb0878377",
+          appid: process.env.OPEN_WEATHER_API_KEY,
           q: city,
-          units: "metric",
-          lang: "pt_br",
+          units: process.env.OPEN_WEATHER_API_UNITS,
+          lang: process.env.OPEN_WEATHER_API_LANG,
         },
       });
       const { weather, main, wind, name, sys, timezone } = response.data;
       return {
-        icon: `https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`,
+        icon: `${process.env.IMG_URL_PREFIX}/${weather[0].icon}@2x.png`,
         temp: `${Math.round(main.temp)}°C`,
         temp_description: weather[0].description,
         feels_like: `${Math.round(main.feels_like)}°C`,

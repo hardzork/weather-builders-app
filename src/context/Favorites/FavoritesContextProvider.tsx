@@ -17,7 +17,7 @@ export function FavoritesContextProvider({
       setLoading(true);
       let cities: string[] = [];
       const favoriteCities = await AsyncStorage.getItem(
-        "@WEATHER_BUILDERS_APP_FAVORITE_CITIES"
+        process.env.ASYNC_STORAGE_KEY as string
       );
       if (favoriteCities) {
         cities = JSON.parse(favoriteCities);
@@ -27,7 +27,7 @@ export function FavoritesContextProvider({
       }
       const newFavoriteCities = [...cities, city];
       await AsyncStorage.setItem(
-        "@WEATHER_BUILDERS_APP_FAVORITE_CITIES",
+        process.env.ASYNC_STORAGE_KEY as string,
         JSON.stringify(newFavoriteCities)
       );
       setFavorites(newFavoriteCities);
@@ -44,7 +44,7 @@ export function FavoritesContextProvider({
     try {
       setLoading(true);
       const favoriteCities = await AsyncStorage.getItem(
-        "@WEATHER_BUILDERS_APP_FAVORITE_CITIES"
+        process.env.ASYNC_STORAGE_KEY as string
       );
       if (!favoriteCities) {
         return;
@@ -53,9 +53,9 @@ export function FavoritesContextProvider({
       const newFavoriteCities = cities.filter(
         (favoriteCity) => favoriteCity !== city
       );
-      await AsyncStorage.removeItem("@WEATHER_BUILDERS_APP_FAVORITE_CITIES");
+      await AsyncStorage.removeItem(process.env.ASYNC_STORAGE_KEY as string);
       await AsyncStorage.setItem(
-        "@WEATHER_BUILDERS_APP_FAVORITE_CITIES",
+        process.env.ASYNC_STORAGE_KEY as string,
         JSON.stringify(newFavoriteCities)
       );
       setFavorites(newFavoriteCities);
@@ -72,7 +72,7 @@ export function FavoritesContextProvider({
     try {
       let cities: string[] = [];
       const favoriteCities = await AsyncStorage.getItem(
-        "@WEATHER_BUILDERS_APP_FAVORITE_CITIES"
+        process.env.ASYNC_STORAGE_KEY as string
       );
       if (favoriteCities) {
         cities = JSON.parse(favoriteCities);
@@ -93,7 +93,7 @@ export function FavoritesContextProvider({
   async function getFavorites() {
     try {
       const favoriteCities = await AsyncStorage.getItem(
-        "@WEATHER_BUILDERS_APP_FAVORITE_CITIES"
+        process.env.ASYNC_STORAGE_KEY as string
       );
       favoriteCities && setFavorites(JSON.parse(favoriteCities));
     } catch (error) {
