@@ -1,6 +1,11 @@
 import { Background } from "../../components/Background";
 import { useState } from "react";
-import { Container, ClearSearchButton, ClearSearchButtonLabel } from "./styles";
+import {
+  Container,
+  ClearSearchButton,
+  ClearSearchButtonLabel,
+  Content,
+} from "./styles";
 import { SearchBox } from "../../components/SearchBox";
 import { WeatherCityCard } from "../../components/WeatherCityCard";
 
@@ -24,7 +29,9 @@ export function Search() {
           setSearch={setSearch}
           handleSearch={handleSearch}
         />
-        <WeatherCityCard city={city} />
+        <Content>
+          <WeatherCityCard city={city} />
+        </Content>
         {search.length > 0 && (
           <ClearSearchButton onPress={handleCleanSearch}>
             <ClearSearchButtonLabel>Limpar pesquisa</ClearSearchButtonLabel>

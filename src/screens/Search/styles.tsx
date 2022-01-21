@@ -24,3 +24,7 @@ export const ClearSearchButtonLabel = styled.Text`
   font-weight: bold;
   color: #fff;
 `;
+
+export const Content = styled.View`
+  height: 30%;
+`;

@@ -38,6 +38,7 @@ export function WeatherCityCard({ city }: WeatherCityCardProps) {
     const loadWeatherInfo = async () => {
       if (city.length > 0) {
         const response = await getWeatherInfoByCityName(city);
+
         if (response) setWeather(response);
       } else {
         setWeather({} as WeatherInfoProps);
@@ -45,7 +46,6 @@ export function WeatherCityCard({ city }: WeatherCityCardProps) {
     };
     loadWeatherInfo();
   }, [city]);
-
   if (!weather.temp) {
     return <View></View>;
   }

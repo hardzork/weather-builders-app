@@ -2,13 +2,13 @@ import styled from "styled-components/native";
 import { Feather } from "@expo/vector-icons";
 
 export const Container = styled.View`
-  height: 30%;
   background: rgba(255, 255, 255, 0.3);
   border-radius: 25px;
   margin-left: 5%;
   margin-right: 5%;
   padding: 20px;
   flex-direction: row;
+  margin-bottom: -40px;
 `;
 
 export const InfoContainer = styled.View`
