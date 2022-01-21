@@ -16,12 +16,14 @@
 
 ## Imagens
 
-<img alt="Home" src="home-ios.png" width="300" />
+<p float="left">
+<img alt="Home" src="home-ios.png" width="300"  />
 <img alt="Busca Vazia" src="busca-vazia-ios.png"  width="300"/>
 <img alt="Busca Teclado" src="busca-teclado-ios.png"  width="300"/>
 <img alt="Busca Resultado Sem Favorito" src="busca-resultado-sem-favorito-ios.png"  width="300"/>
 <img alt="Busca Resultado Com Favorito" src="busca-resultado-com-favorito-ios.png"  width="300"/>
 <img alt="Favoritos" src="favoritos-ios.png"  width="300"/>
+</p>
 
 ## Como Funciona o App
 
