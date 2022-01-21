@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { RefreshControl, View } from "react-native";
+import { RefreshControl } from "react-native";
 import { useLocation, useWeather } from "../../hooks";
+import { Loader } from "../Loader";
 import {
   Scroll,
   Container,
@@ -29,7 +30,7 @@ export function WeatherPrincipalCard() {
   const { weather, getWeatherInfo } = useWeather();
   const [refreshing, setRefreshing] = useState(false);
   if (!completed) {
-    return <View></View>;
+    return <Loader />;
   }
   const onRefresh = async () => {
     setRefreshing(true);
