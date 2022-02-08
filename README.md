@@ -1,10 +1,8 @@
 <h1 align="center">
-    <img alt="Builders" src="https://platformbuilders.io/assets/img/logo.png" />
-    <br>
-    Weather Builders App
+    Weather App
 </h1>
 <h4 align="center">
-  Projeto desenvolvido como teste técnico, fazendo parte do processo seletivo para desenvolvedor React Native.
+  Projeto desenvolvido com o intuito de estudar melhor a API de Geolocalização.
 </h4>
 <p align="center">
 <a href="#imagens">Imagens</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -17,12 +15,12 @@
 ## Imagens
 
 <p float="left">
-<img alt="Home" src="home-ios.png" width="300"  />
-<img alt="Busca Vazia" src="busca-vazia-ios.png"  width="300"/>
-<img alt="Busca Teclado" src="busca-teclado-ios.png"  width="300"/>
-<img alt="Busca Resultado Sem Favorito" src="busca-resultado-sem-favorito-ios.png"  width="300"/>
-<img alt="Busca Resultado Com Favorito" src="busca-resultado-com-favorito-ios.png"  width="300"/>
-<img alt="Favoritos" src="favoritos-ios.png"  width="300"/>
+<img alt="Home" src="home-ios.png" width="200"  />
+<img alt="Busca Vazia" src="busca-vazia-ios.png"  width="200"/>
+<img alt="Busca Teclado" src="busca-teclado-ios.png"  width="200"/>
+<img alt="Busca Resultado Sem Favorito" src="busca-resultado-sem-favorito-ios.png"  width="200"/>
+<img alt="Busca Resultado Com Favorito" src="busca-resultado-com-favorito-ios.png"  width="200"/>
+<img alt="Favoritos" src="favoritos-ios.png"  width="200"/>
 </p>
 
 ## Como Funciona o App
@@ -95,13 +93,13 @@ Adicione as sugestões abaixo:
 ```bash
 API_URL_PREFIX = https://api.openweathermap.org/data/2.5/
 IMG_URL_PREFIX = https://openweathermap.org/img/wn
-OPEN_WEATHER_API_KEY = 753b3c35c8d66c119cc0693cb0878377
+OPEN_WEATHER_API_KEY = CRIE_SUA_PROPRIA_API_KEY
 OPEN_WEATHER_API_UNITS = metric
 OPEN_WEATHER_API_LANG = pt_br
 ASYNC_STORAGE_KEY = @WEATHER_BUILDERS_APP_FAVORITE_CITIES
 ```
 
-O App utiliza a API do Open Weather para obter as informações de clima. Se preferir crie uma nova chave em [API do Open Weather](https://openweathermap.org/api).
+O App utiliza a API do Open Weather para obter as informações de clima. Crie uma nova chave em [API do Open Weather](https://openweathermap.org/api).
 
 Após adicionar as sugestões acima ou as suas próprias (Somente para OPEN_WEATHER_API_KEY e ASYNC_STORAGE_KEY), altere o nome do arquivo de ".env.example" para ".env".
 
@@ -132,7 +130,3 @@ Para executar os testes automatizados siga as instruções abaixo
 # Execute os testes
 $ yarn test
 ```
-
-## Contato
-
-Robinson Silva Junior - [Github](https://github.com/hardzork)
